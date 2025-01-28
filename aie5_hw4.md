@@ -29,7 +29,15 @@
      - What if the response needs fact-checking?
   Consider how you would modify the graph to handle these scenarios.
 
-  * What if the retriever finds no relevant context? 
+  * What if the retriever finds no relevant context?
+
+    We should first make sure the context retrieved was really null or is that wrong interpretation, a simple conditional check. If there really was
+    no context then we can go back to the user with a graceful message that there was no context found instead of a blank "I dont know". Alternatively
+    we can ask more questions to derive context in subsequent iterations or see if there are any alternate RAG sources.
+
+  * What if the response needs fact-checking?
+
+    Have a final catch all path to make sure all answers go through a very powerful and accurate LLM before the final output is returned.
   
 5. What does LCEL do that makes it more reliable at scale?
 
